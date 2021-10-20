@@ -1,0 +1,6 @@
+.DS_Store*
+*.tfstate*
+.terraform*
+
+images/images_*
+.ipynb_checkpoints

@@ -1,0 +1,7 @@
+numpy
+Pandas
+python-dotenv
+pillow
+azure
+matplotlib
+opencv-python
