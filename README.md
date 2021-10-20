@@ -1,7 +1,5 @@
-## Preferable environment to be used is: MS Azure.
-
 ## Description of the project:
-
+### Preferable environment to be used is: MS Azure.
 ### Come up with Python based data processing pipeline with data preparation & processing functional workflow steps as follows : 
 1. Load an image dataset from Laptop to Azure compute instance
     - Run following transformation on the data (each image)
