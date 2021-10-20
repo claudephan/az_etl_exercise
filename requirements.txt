@@ -5,3 +5,13 @@ pillow
 azure
 matplotlib
 opencv-python
+
+
+# Needed to provision a VM
+azure-mgmt-resource
+azure-mgmt-compute
+azure-mgmt-network
+azure-identity
+
+# For provision of storage Account
+
