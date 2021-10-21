@@ -23,5 +23,5 @@ variable "etl_vm_pw" {
 
 variable "base_path" {
   type = string
-  default = "./images"
+  default = "./"
 }

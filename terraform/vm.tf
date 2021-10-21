@@ -30,7 +30,7 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
         }
 
         source = "../images/train"
-        destination = "/tmp/images"
+        destination = "/tmp/train"
     }
 
     provisioner "file" {
