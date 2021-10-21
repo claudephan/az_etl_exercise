@@ -4,3 +4,6 @@
 
 images/images_*
 .ipynb_checkpoints
+
+.env
+*.log

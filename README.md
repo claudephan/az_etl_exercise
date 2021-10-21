@@ -17,3 +17,21 @@
 3. Provide what kind of improvements and feature enhancement can be done on top of initial pipeline functionality. 
 
 
+
+
+az provider list
+az provider register --namespace Microsoft.Network
+az provider register --namespace Microsoft.Compute
+az provider register --namespace Microsoft.Storage
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider
+
+
+
+git clone https://github.com/claudephan/az_etl_exercise.git
+
+sudo apt-get update
+sudo apt-get -y install python3-pip
+pip3 install --upgrade pip
+sudo pip3 install -r requirements.txt
+sudo apt-get install libsm6
+sudo apt-get install -y libxrender-dev

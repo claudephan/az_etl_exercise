@@ -97,11 +97,39 @@ if __name__ == "__main__":
     image_count = len(list(img_path.glob('*.jpg')))
     print("Total Images: " + str(image_count))
 
-    FlipHorizontally(base_path, img_path)
-    FlipVertically(base_path, img_path)
-    RotateImage(base_path, img_path)
-    BlurImage(base_path, img_path, 3)
-    BlurImage(base_path, img_path, 7)
+    FlipHorizontally(base_path, str(img_path))
+    FlipVertically(base_path, str(img_path))
+    RotateImage(base_path, str(img_path))
+    BlurImage(base_path, str(img_path), 3)
+    BlurImage(base_path, str(img_path), 7)
 
 
 
+# {azurerm_storage_account.example.primary_connection_string}
+# export AZURE_STORAGE_CONNECTIONSTRING="<YourConnectionString>"
+# connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
+
+# Create the BlobServiceClient object which will be used to create a container client
+# blob_service_client = BlobServiceClient.from_connection_string(connect_str)
+
+# # Create a local directory to hold blob data
+# local_path = "./data"
+# os.mkdir(local_path)
+
+# # Create a file in the local data directory to upload and download
+# local_file_name = str(uuid.uuid4()) + ".txt"
+# upload_file_path = os.path.join(local_path, local_file_name)
+
+# # Write text to the file
+# file = open(upload_file_path, 'w')
+# file.write("Hello, World!")
+# file.close()
+
+# # Create a blob client using the local file name as the name for the blob
+# blob_client = blob_service_client.get_blob_client(container=container_name, blob=local_file_name)
+
+# print("\nUploading to Azure Storage as blob:\n\t" + local_file_name)
+
+# # Upload the created file
+# with open(upload_file_path, "rb") as data:
+#     blob_client.upload_blob(data)
