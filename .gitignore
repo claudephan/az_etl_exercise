@@ -1,6 +1,7 @@
 .DS_Store*
 *.tfstate*
 .terraform*
+*.tfplan
 
 images/images_*
 .ipynb_checkpoints
