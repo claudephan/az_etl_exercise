@@ -37,10 +37,11 @@
 
 ### Prerequisites
 1. Terraform (>= v1.0.3)
-2. azcopy
-3. Azure subscription (resource group should not exist)
-    - if resources already exist, will need to import resources into terraform state for management
-4. Azure Cli
+2. AzCopy
+3. Azure Cli
+4. Azure subscription (resource group should not exist)
+    - if resource(s) already exist, will need to import resources into terraform state for management before continuing
+
 
 ### Deployment Instructions
 1. az login ("az account show" to verify correct account has been logged in)
