@@ -16,11 +16,6 @@ variable "etl_vm_un" {
   default = "adminuser"
 }
 
-variable "etl_vm_pw" {
-  type = string
-  default = "Cl@ude123456"
-}
-
 variable "base_path" {
   type = string
   default = "."

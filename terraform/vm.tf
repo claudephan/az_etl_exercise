@@ -4,11 +4,17 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
     resource_group_name = azurerm_resource_group.etl_learn_rg.name
     size                = "Standard_F2"
     admin_username      = "${var.etl_vm_un}"
-    admin_password      = "${var.etl_vm_pw}"
-    disable_password_authentication = false
+    # admin_password      = "${var.etl_vm_pw}"
+    disable_password_authentication = true
     network_interface_ids = [
         azurerm_network_interface.sensi_etl_nic1988.id,
     ]
+
+    admin_ssh_key {
+        username   = "${var.etl_vm_un}"
+        public_key = "${tls_private_key.vm_ssh.public_key_openssh}"
+    }
+
     os_disk {
         caching              = "ReadWrite"
         storage_account_type = "Standard_LRS"
@@ -26,7 +32,8 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            password = "${var.etl_vm_pw}"
+            # password = "${var.etl_vm_pw}"
+            private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
         source = "../images/train"
@@ -38,7 +45,8 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            password = "${var.etl_vm_pw}"
+            # password = "${var.etl_vm_pw}"
+            private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
         source = "../image_processor.py"
@@ -50,7 +58,8 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            password = "${var.etl_vm_pw}"
+            # password = "${var.etl_vm_pw}"
+            private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
         source = "../requirements.txt"
@@ -62,7 +71,8 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            password = "${var.etl_vm_pw}"
+            # password = "${var.etl_vm_pw}"
+            private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
         inline = [

@@ -54,16 +54,3 @@ data "azurerm_storage_account_blob_container_sas" "blob_container_sas" {
         azurerm_storage_container.storage_container
     ]
 }
-
-output "sas_url_query_string" {
-    value = nonsensitive(data.azurerm_storage_account_blob_container_sas.blob_container_sas.sas)
-    description = "This is the SAS needed to download processed images from Storage Container"
-    depends_on = [
-        data.azurerm_storage_account_blob_container_sas.blob_container_sas
-    ]
-}
-
-output "storage_container_id" {
-    value = azurerm_storage_container.storage_container.id
-    description = "This is the Storage Container URL"
-}
