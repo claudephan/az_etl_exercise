@@ -7,14 +7,3 @@ opencv-python<4.3
 
 # For blob image push
 azure-storage-blob
-
-
-
-# Needed to provision a VM
-# azure-mgmt-resource
-# azure-mgmt-compute
-# azure-mgmt-network
-# azure-identity
-
-# For provision of storage Account
-

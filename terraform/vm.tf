@@ -1,10 +1,10 @@
+#Create Azure Compute VM
 resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
     name                = "sensietlvm1988"
     location            = azurerm_resource_group.etl_learn_rg.location
     resource_group_name = azurerm_resource_group.etl_learn_rg.name
     size                = "Standard_F2"
     admin_username      = "${var.etl_vm_un}"
-    # admin_password      = "${var.etl_vm_pw}"
     disable_password_authentication = true
     network_interface_ids = [
         azurerm_network_interface.sensi_etl_nic1988.id,
@@ -27,12 +27,12 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
         version   = "latest"
     }
 
+    #Push images to be processed to VM
     provisioner "file" {
         connection {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            # password = "${var.etl_vm_pw}"
             private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
@@ -40,12 +40,12 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
         destination = "/tmp/train"
     }
 
+    #Push python script for image processing to VM
     provisioner "file" {
         connection {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            # password = "${var.etl_vm_pw}"
             private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
@@ -53,12 +53,12 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
         destination = "/tmp/image_processor.py"
     }
 
+    #Push python package requirements to VM
     provisioner "file" {
         connection {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            # password = "${var.etl_vm_pw}"
             private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
@@ -66,12 +66,12 @@ resource "azurerm_linux_virtual_machine" "sensietlvm1988" {
         destination = "/tmp/requirements.txt"
     }
 
+    #Carry out bash commands on VM to install python packages, set env variables, and run python script
     provisioner "remote-exec" {
         connection {
             type = "ssh"
             host = "${azurerm_public_ip.sensi_etl_publicip.ip_address}"
             user = "${var.etl_vm_un}"
-            # password = "${var.etl_vm_pw}"
             private_key = "${tls_private_key.vm_ssh.private_key_pem}"
         }
 
