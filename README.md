@@ -38,7 +38,9 @@
 ### Prerequisites
 1. Terraform (>= v1.0.3)
 2. azcopy
-3. Azure subscription
+3. Azure subscription (resource group should not exist)
+    - if resources already exist, will need to import resources into terraform state for management
+4. Azure Cli
 
 ### Deployment Instructions
 1. az login ("az account show" to verify correct account has been logged in)
@@ -51,8 +53,9 @@
 4. terraform plan -out etlrun.tfplan
 5. terraform apply etlrun.tfplan
     - Upon successful run terraform will output an az copy command which can be used to download images from the storage container
-6. (Optional) Copy processed images from the storage container to local disk
+6. (Optional) Copy processed images from the storage container to local disk.
     - azcopy cp "${storage_container_id}${sas_url_query_string}" "local/path" --recursive=true
+    - Remember to change value of "Local Path" in command above
 
 ## DevOps Best Practices
 1. Would want somewhere to store and manage Terraform state files
@@ -65,3 +68,4 @@
 2. Ideally the initial images to be processed wouldn't be transferred into the VM from local disk. Images would probably be available in some object store/data lake populated from an ETL pipeline/job
 3. Base on scale & resources, could be possible to run image processing functions async
 4. Better structured terraform, code taking advantage patterns such as modules for code reusability
+5. Might need a better way to handle date/time for SAS to account for user timezone and VM location
